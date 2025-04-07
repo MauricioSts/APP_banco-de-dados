@@ -39,6 +39,18 @@ class _HomeState extends State<Home> {
     print("Salvo: $id");
   }
 
+  _listarDados() async{
+     Database bd = await _recuperarBancoDados();
+
+     String sql = "SELECT * FROM usuarios WHERE id = 5";
+
+     List usuarios = await bd.rawQuery(sql);
+
+     for (var usuario in usuarios){
+      print ("item id: " + usuario ['id'].toString() + " nome" + usuario ['nome'] + " idade:" + usuario['idade'].toString());
+     }
+  }
+
   @override
   Widget build(BuildContext context) {
     _recuperarBancoDados();
